@@ -1,7 +1,8 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class EmployeeWage implements ICalculateWage {
-	private CompanyWage[] companyarray = new CompanyWage[5];
+	private ArrayList<CompanyWage> companyarraylist = new ArrayList<CompanyWage>();
 	private int noofcompanies = 0;
 
 	public static void main(String[] args) {
@@ -16,7 +17,7 @@ public class EmployeeWage implements ICalculateWage {
 		Scanner scanner = new Scanner(System.in);
 		int choice = 0;
 		do {
-			System.out.println("Add Company Details(max 5 companies)");
+			System.out.println("Add Company Details");
 			System.out.println("Enter your Company Name");
 			String companyName = scanner.nextLine();
 			System.out.println("Enter wage per hour");
@@ -32,15 +33,17 @@ public class EmployeeWage implements ICalculateWage {
 			noofcompanies++;
 		} while (choice == 1 && noofcompanies < 5);
 		if (noofcompanies == 5)
-			System.out.println("Max number of Companies reached");
+			System.out.println("Max number of Companies Reached");
 		showWage();
 		scanner.close();
 	}
 
 	public void addCompany(String companyName, int wagePerHour, int noofWorkingDays, int noofMaxHours) {
 
-		companyarray[noofcompanies] = new CompanyWage(wagePerHour, noofWorkingDays, noofMaxHours, companyName);
-		calcSalary(companyarray[noofcompanies]);
+		CompanyWage companywage = new CompanyWage(wagePerHour, noofWorkingDays, noofMaxHours, companyName);
+		calcSalary(companywage);
+		companyarraylist.add(companywage);
+		
 	}
 
 	public void calcSalary(CompanyWage calcwage) {
@@ -83,8 +86,8 @@ public class EmployeeWage implements ICalculateWage {
 	}
 
 	public void showWage() {
-		for (int index = 0; index < noofcompanies; index++) {
-			System.out.println(companyarray[index]);
+		for (CompanyWage compwage:companyarraylist) {
+			System.out.println(compwage);
 		}
 	}
 
@@ -148,7 +151,7 @@ class CompanyWage {
 
 	@Override
 	public String toString() {
-		return "Total wage of " + companyName + " is " + totalWage;
+		return "Total wage for " + companyName + " is " + totalWage;
 	}
 
 }
