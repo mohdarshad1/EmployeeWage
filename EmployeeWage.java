@@ -15,10 +15,10 @@ public class EmployeeWage {
 		Scanner scanner = new Scanner(System.in);
 		int choice=0;
 		do {
-		System.out.println("Please add Company details(max 5 companies)");
+		System.out.println("Please add Company Details(max 5 companies)");
 		System.out.println("Enter your Company Name");
 		String companyName = scanner.nextLine();
-		System.out.println("Enter wage per hour");
+		System.out.println("Enter wage per Hour");
 		int wagePerHour = scanner.nextInt();
 		System.out.println("Enter no of working days per month");
 		int noofWorkingDays = scanner.nextInt();
