@@ -52,7 +52,7 @@ public class EmpWageBuilder {
     ArrayList<CompanyEmpWage> companies;
     HashMap<String, Integer> totalEmpWages;
  
-    
+    //constructor
     public EmpWageBuilder()
     {
         companies = new  ArrayList<>();
@@ -113,15 +113,11 @@ public class EmpWageBuilder {
         return totalWage;
     }
     
-    void printTotalEmpWages()
+    public int getTotalEmpWage(String companyName)
     {
-    	System.out.println("The Companies And Their Total Employee Wages Are:");
-    	for (String companyName : totalEmpWages.keySet())
-    	{
-    	System.out.println(companyName + ": " + totalEmpWages.get(companyName));
+    	return totalEmpWages.get(companyName);
     }
-}
-
+    
     public static void main(String args[])
     {
         EmpWageBuilder empWageBuilder = new EmpWageBuilder();
@@ -129,8 +125,9 @@ public class EmpWageBuilder {
         empWageBuilder.addCompany("BigBazzar", 150, 4, 20);
         empWageBuilder.addCompany("More", 120, 4, 20);
         empWageBuilder.calculateTotalWage();
-        empWageBuilder.printTotalEmpWages();
+        String query = "BigBazzar";
+        int totalWage = empWageBuilder.getTotalEmpWage(query);
+        System.out.println("Total Employee Wage for " + query + " company is " + totalWage);
     }
-
 
 }
